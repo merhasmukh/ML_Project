@@ -6,6 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+
+# Custom Directories
+artifacts
+./artifacts
+./logs
+logs
+
 # Distribution / packaging
 .Python
 build/
@@ -56,7 +63,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
+
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
