@@ -6,6 +6,7 @@ contourpy==1.0.7
 cycler==0.11.0
 debugpy==1.6.6
 decorator==5.1.1
+dill==0.3.6
 executing==1.2.0
 fonttools==4.39.0
 graphviz==0.20.1
