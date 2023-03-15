@@ -37,7 +37,7 @@ class Modeltrainer:
             logging.info("Split training and test input data")
             X_train,y_train,X_test,y_test=(
                 train_array[:,:-1],
-                test_array[:,-1],
+                train_array[:,-1],
                 test_array[:,:-1],
                 test_array[:,-1]
             )
@@ -52,7 +52,7 @@ class Modeltrainer:
                     "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                     "AdaBoost Regressor": AdaBoostRegressor()
                 }
-            model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
+            model_report=evaluate_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
 
             ## To get best model score from dict
 
