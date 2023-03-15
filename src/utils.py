@@ -6,6 +6,8 @@ import pandas as pd
 import  dill
 from src.logger import logging
 from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
+
 def save_object(file_path,obj):
     try:
         dir_path=os.path.dirname(file_path)
@@ -17,7 +19,7 @@ def save_object(file_path,obj):
         raise CustomException(e,sys)
     
 
-def evaluate_model(X_train, y_train,X_test,y_test,models):
+def evaluate_model(X_train, y_train,X_test,y_test,models,param):
     try:
         report={}
         logging.info("Evaluating Models Started {}".format(list(models)))
@@ -25,8 +27,14 @@ def evaluate_model(X_train, y_train,X_test,y_test,models):
         for i in range(len(list(models))):
             # print("iii",i)
             model = list(models.values())[i]
+            para=param[list(models.keys())[i]]
             # print("model",model)
-            model.fit(X_train, y_train) # Train model
+            # model.fit(X_train, y_train) # Train model
+            gs = GridSearchCV(model,para,cv=3)
+            gs.fit(X_train,y_train)
+
+            model.set_params(**gs.best_params_)
+            model.fit(X_train,y_train)
             logging.info("{} fitted sucessfully".format(model))
             
             # Make predictions
